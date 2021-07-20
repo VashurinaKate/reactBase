@@ -7,8 +7,7 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         My First React App
-        <Message/>
-
+        <Message msg="This is message from props"/>
       </header>
     </div>
   );

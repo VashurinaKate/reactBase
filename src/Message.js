@@ -1,8 +1,9 @@
-export const Message = () => {
+export const Message = (props) => {
+    console.log(props.msg)
     return (
         <div className="Message">
-            <p>{}</p>
+            <p>Message: {props.msg} </p>
         </div>
-        );
+    );
 }
 
