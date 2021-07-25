@@ -1,15 +1,14 @@
-import { Message } from './Message';
+import { Component } from './components/Component';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App(props) {
-  console.log(props)
-  const message = "This is message from props";
+function App() {
   return (
     <div className="App">
       <header className="App-header">
-        My First React App
-        <Message msg={message}/>
+        My Chat
       </header>
+      <Component/>
     </div>
   );
 }
