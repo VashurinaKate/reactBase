@@ -48,7 +48,7 @@ export const Message = ({ message, author }) => {
                     <Avatar>{author}</Avatar>
                 </Grid>
                 <Grid item xs>
-                    <Typography style={{textAlign: 'right'}}>{message}</Typography>
+                    <Typography style={{textAlign: 'left'}}>{message}</Typography>
                 </Grid>
             </Grid>
         </Paper>

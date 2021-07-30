@@ -10,16 +10,15 @@ import { AUTHORS } from "../../constants";
 
 export const MessageForm = ({ onSendMessage }) => {
     const [messageValue, setMessageValue] = useState('');
-    const inputTextRef = useRef(null);
+    const inputRef = useRef(null);
 
     useEffect(() => {
-        inputTextRef.current?.focus()
+        inputRef.current?.focus()
     }, [])
 
     const handleMessageChange = (e) => {
         setMessageValue(e.target.value);
     }
-
     const handleClick = (e) => {
         e.preventDefault();
         if (messageValue) {
@@ -29,9 +28,8 @@ export const MessageForm = ({ onSendMessage }) => {
                 id: Date.now()
             })
         }
-
         setMessageValue('');
-        inputTextRef.current?.focus()
+        inputRef.current?.focus()
     }
 
     return (
@@ -42,10 +40,10 @@ export const MessageForm = ({ onSendMessage }) => {
                         <InputLabel htmlFor="outlined-adornment-amount">Your message</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-amount"
-                            ref={inputTextRef}
                             value={messageValue}
                             onChange={handleMessageChange}
                             labelWidth={104}
+                            inputRef={inputRef}
                         />
                     </FormControl>
                 </Grid>

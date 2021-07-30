@@ -12,7 +12,6 @@ import { AUTHORS } from './constants';
 
 function App() {
     const [messageList, setMessageList] = useState([]);
-
     const handleSendMessage = useCallback((newMessage) => {
         setMessageList([...messageList, newMessage])
     }, [messageList])
