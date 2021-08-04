@@ -42,7 +42,7 @@ export const MessageForm = ({ onSendMessage }) => {
                         <InputLabel htmlFor="outlined-adornment-amount">Your message</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-amount"
-                            ref={inputTextRef}
+                            inputRef={inputTextRef}
                             value={messageValue}
                             onChange={handleMessageChange}
                             labelWidth={104}
