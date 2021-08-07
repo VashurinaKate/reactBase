@@ -1,5 +1,5 @@
 import { AUTHORS } from "../../constants"
-import { ADD_CHAT, SEND_MESSAGE } from "./actionTypes"
+import { ADD_CHAT, REMOVE_CHAT, SEND_MESSAGE } from "./actionTypes"
 
 const initialState = {
     chat1: {
@@ -36,7 +36,7 @@ export const chatsReducer = (state = initialState, { type, payload }) => {
         }
         case SEND_MESSAGE: {
             console.log(payload.message)
-            console.log([...state[payload.chatId].messages,payload.message])
+            console.log([...state[payload.chatId].messages, payload.message])
 
             return {
                 ...state,
@@ -44,6 +44,14 @@ export const chatsReducer = (state = initialState, { type, payload }) => {
                     ...state[payload.chatId],
                     messsages: [...state[payload.chatId].messages, payload.message]
                 }
+            }
+        }
+        case REMOVE_CHAT: {
+            const removeItem = Object.values(state).find(item => item.id === payload.chatId);
+            const index = Object.values(state).indexOf(removeItem)
+            Object.values(state).splice(index, 1)
+            return {
+                state
             }
         }
         default: return state
