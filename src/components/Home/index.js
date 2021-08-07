@@ -6,49 +6,42 @@ import { ChatList } from '../ChatList';
 import './Home.css';
 import Grid from '@material-ui/core/Grid';
 import { AUTHORS } from '../../constants';
+import { useDispatch, useSelector } from 'react-redux'
+import { sendMessage } from '../../store/chats/actions';
 
-function Home({ chats, setChats }) {
+function Home() {
     const { chatId } = useParams();
+    const chats = useSelector((state) => state.chats)
+    const dispatch = useDispatch();
 
     const handleSendMessage = useCallback((newMessage) => {
-        setChats({
-            ...chats,
-            [chatId]: {
-                ...chats[chatId], 
-                messages: [...chats[chatId].messages, newMessage]
-            }
-        })
-    }, [chats, chatId])
+        dispatch(sendMessage(chatId, newMessage))
+    }, [chatId])
 
-    useEffect(() => {
-        if (!chatId ||
-            !chats[chatId].messages.length ||
-            chats[chatId].messages[chats[chatId].messages.length - 1].author === AUTHORS.robot) {
-                return
-            }
-            const timeout = setTimeout(() => {
-                const robotMess = {
-                    message: 'hello',
-                    author: AUTHORS.robot,
-                    id: Date.now()
-                };
-                handleSendMessage(robotMess)
-            }, 1000);
-            return () => clearTimeout(timeout);
-    }, [chats, chatId]);
+    // useEffect(() => {
+    //     if (!chatId ||
+    //         !chats[chatId].messages.length ||
+    //         chats[chatId].messages[chats[chatId].messages.length - 1].author === AUTHORS.robot) {
+    //             return
+    //         }
+    //         const timeout = setTimeout(() => {
+    //             const robotMess = {
+    //                 message: 'hello',
+    //                 author: AUTHORS.robot,
+    //                 id: Date.now()
+    //             };
+    //             handleSendMessage(robotMess)
+    //         }, 1000);
+    //         return () => clearTimeout(timeout);
+    // }, [chats, chatId]);
     
-    const handleSetChat = (newChat) => {
-        setChats({
-            ...chats,
-            newChat
-        })
-    }
     return (
         <Grid container spacing={1}>
             <Grid item xs={3}>
-                <ChatList chatList={chats} onSetChats={handleSetChat}/>
+                <ChatList chatList={chats}/>
             </Grid>
-            { !!chatId && <Grid
+            { !!chatId && 
+            <Grid
                 item xs={9}
                 container
                 direction="column"
@@ -58,7 +51,7 @@ function Home({ chats, setChats }) {
                     <Grid item><MessageForm onSendMessage={handleSendMessage}/></Grid>
             </Grid>
             }
-            { !chats[chatId] && <Redirect to="/nochat" /> }
+            {/* { !chats[chatId] && <Redirect to="/nochat" /> } */}
         </Grid>
     );
 }

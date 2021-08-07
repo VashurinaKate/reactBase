@@ -29,7 +29,6 @@ export const MessageForm = ({ onSendMessage }) => {
                 id: Date.now()
             })
         }
-
         setMessageValue('');
         inputTextRef.current?.focus()
     }
