@@ -25,7 +25,7 @@ export const MessageForm = ({ onSendMessage }) => {
         if (messageValue) {
             onSendMessage({
                 author: AUTHORS.human,
-                message: messageValue,
+                text: messageValue,
                 id: Date.now()
             })
         }

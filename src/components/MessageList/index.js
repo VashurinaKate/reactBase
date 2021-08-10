@@ -1,7 +1,15 @@
+import React, { useCallback } from "react";
 import { Message } from "../Message";
 
-export const MessageList = ({ messageList }) => {
-    return messageList.map((item) => (
-        <Message message={item.message} author={item.author} key={item.id}/>
-    ))
+export const MessageList = ({ messages }) => {
+    const renderMessage = useCallback(
+        (mess) => (
+            <Message
+                text={mess.text}
+                author={mess.author}
+                key={mess.id}
+            />
+        ), []
+    );
+    return messages.map(renderMessage);
 }

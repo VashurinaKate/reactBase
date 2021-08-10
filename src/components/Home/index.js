@@ -18,6 +18,9 @@ function Home() {
         dispatch(sendMessage(chatId, newMessage))
     }, [chatId])
 
+    // if (!chats[chatId]) {
+    //     return null
+    // }
     // useEffect(() => {
     //     if (!chatId ||
     //         !chats[chatId].messages.length ||
@@ -26,7 +29,7 @@ function Home() {
     //         }
     //         const timeout = setTimeout(() => {
     //             const robotMess = {
-    //                 message: 'hello',
+    //                 text: 'hello',
     //                 author: AUTHORS.robot,
     //                 id: Date.now()
     //             };
@@ -47,11 +50,13 @@ function Home() {
                 direction="column"
                 justifyContent="space-between"
                 style={{ minHeight: '100vh', paddingBottom: '30px' }}>
-                    <Grid item><MessageList messageList={chats[chatId].messages}/></Grid>
+                    <Grid item>
+                        <MessageList messages={chats[chatId].messages}/>
+                        {/* { chats[chatId].messages ? <MessageList messages={chats[chatId].messages}/> : <Redirect to="/nochat" /> } */}
+                    </Grid>
                     <Grid item><MessageForm onSendMessage={handleSendMessage}/></Grid>
             </Grid>
             }
-            {/* { !chats[chatId] && <Redirect to="/nochat" /> } */}
         </Grid>
     );
 }

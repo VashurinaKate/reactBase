@@ -7,7 +7,7 @@ const initialState = {
         id: "chat1",
         messages: [{ 
             author: AUTHORS.human,
-            message: "message from chat 1",
+            text: "message from chat 1",
             id: "chat1-1"
         }]
     },
@@ -16,7 +16,7 @@ const initialState = {
         id: "chat2",
         messages: [{
             author: AUTHORS.human,
-            message: "message from chat 2",
+            text: "message from chat 2",
             id: "chat2-1"
         }]
     }

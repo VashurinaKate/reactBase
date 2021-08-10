@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const Message = ({ message, author }) => {
+export const Message = ({ text, author }) => {
     const isRobot = author;
     const classes = useStyles();
 
@@ -35,7 +35,7 @@ export const Message = ({ message, author }) => {
                     <Avatar>{author}</Avatar>
                 </Grid>
             <Grid item xs>
-                <Typography style={{textAlign: 'left'}}>{message}</Typography>
+                <Typography style={{textAlign: 'left'}}>{text}</Typography>
             </Grid>
             </Grid>
         </Paper>
@@ -48,7 +48,7 @@ export const Message = ({ message, author }) => {
                     <Avatar>{author}</Avatar>
                 </Grid>
                 <Grid item xs>
-                    <Typography style={{textAlign: 'right'}}>{message}</Typography>
+                    <Typography style={{textAlign: 'right'}}>{text}</Typography>
                 </Grid>
             </Grid>
         </Paper>
