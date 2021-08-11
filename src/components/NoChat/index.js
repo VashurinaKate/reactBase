@@ -1,8 +1,12 @@
 import { ChatList } from '../ChatList'
+import { useSelector } from 'react-redux'
 import Grid from '@material-ui/core/Grid';
 
-export const NoChat = ({ chats }) => (
-    <Grid container spacing={1}>
+export const NoChat = () => {
+    const chats = useSelector((state) => state.chats)
+
+    return (
+        <Grid container spacing={1}>
         <Grid item xs={3}>
             <ChatList chatList={chats}/>
         </Grid>
@@ -17,4 +21,5 @@ export const NoChat = ({ chats }) => (
                 </Grid>
         </Grid>
     </Grid>
-)
+    )
+}

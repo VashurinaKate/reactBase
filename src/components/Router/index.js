@@ -23,9 +23,9 @@ export const Router = () => {
                     <Home/>
 
                 </Route>
-                {/* <Route path="/nochat">
+                <Route path="/nochat">
                     <NoChat />
-                </Route> */}
+                </Route>
                 <Route path="*">
                     <h2>404</h2>
                 </Route>
