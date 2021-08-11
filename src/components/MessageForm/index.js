@@ -34,7 +34,7 @@ export const MessageForm = ({ onSendMessage }) => {
     }
 
     return (
-        <form noValidate autoComplete="off">
+        <form noValidate autoComplete="off" onSubmit={handleClick}>
             <Grid container spacing={3} alignItems="center" justifyContent="center" style={{ marginTop: '30px' }}>
                 <Grid item xs={8}>
                     <FormControl fullWidth variant="outlined">
@@ -53,6 +53,7 @@ export const MessageForm = ({ onSendMessage }) => {
                         variant="contained"
                         color="primary"
                         onClick={handleClick}
+                        type="submit"
                         endIcon={<SendRoundedIcon></SendRoundedIcon>}>
                         Send
                     </Button>

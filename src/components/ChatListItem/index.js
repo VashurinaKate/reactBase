@@ -7,15 +7,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
-import { useDispatch } from 'react-redux'
-import { removeChat } from '../../store/chats/actions'
 
-export const ChatListItem = ({ name, id }) => {
-    const dispatch = useDispatch();
-
-    const handleSubmit = () => {
-        dispatch(removeChat(id))
+export const ChatListItem = ({ name, id, onRemove }) => {
+    const handleRemove = () => {
+        onRemove(id)
     }
+
     return (
         <Link to={`/home/${id}`} >
             <ListItem button alignItems="center">
@@ -39,7 +36,7 @@ export const ChatListItem = ({ name, id }) => {
                     }
                 />
                 <HighlightOffIcon
-                    onClick={handleSubmit}
+                    onClick={handleRemove}
                     />
             </ListItem>
             <Divider variant="inset" component="li" />

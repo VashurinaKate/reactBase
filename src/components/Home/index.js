@@ -7,7 +7,7 @@ import './Home.css';
 import Grid from '@material-ui/core/Grid';
 import { AUTHORS } from '../../constants';
 import { useDispatch, useSelector } from 'react-redux'
-import { sendMessage } from '../../store/chats/actions';
+import { sendMessage, removeChat } from '../../store/chats/actions';
 
 function Home() {
     const { chatId } = useParams();
@@ -18,30 +18,35 @@ function Home() {
         dispatch(sendMessage(chatId, newMessage))
     }, [chatId])
 
-    // if (!chats[chatId]) {
-    //     return null
-    // }
-    // useEffect(() => {
-    //     if (!chatId ||
-    //         !chats[chatId].messages.length ||
-    //         chats[chatId].messages[chats[chatId].messages.length - 1].author === AUTHORS.robot) {
-    //             return
-    //         }
-    //         const timeout = setTimeout(() => {
-    //             const robotMess = {
-    //                 text: 'hello',
-    //                 author: AUTHORS.robot,
-    //                 id: Date.now()
-    //             };
-    //             handleSendMessage(robotMess)
-    //         }, 1000);
-    //         return () => clearTimeout(timeout);
-    // }, [chats, chatId]);
+    const handleRemoveChat = useCallback((id) => {
+        dispatch(removeChat(id))
+    }, [])
+
+    useEffect(() => {
+        if (!chatId ||
+            !chats[chatId]?.messages.length ||
+            chats[chatId].messages[chats[chatId].messages.length - 1].author === AUTHORS.robot) {
+                return
+            }
+            const timeout = setTimeout(() => {
+                const robotMess = {
+                    text: 'hello',
+                    author: AUTHORS.robot,
+                    id: Date.now()
+                };
+                handleSendMessage(robotMess)
+            }, 1000);
+            return () => clearTimeout(timeout);
+    }, [chats]);
+
+    if (!chats[chatId]) {
+        return <Redirect to="/nochat" />
+    }
     
     return (
         <Grid container spacing={1}>
             <Grid item xs={3}>
-                <ChatList chatList={chats}/>
+                <ChatList chatList={chats} onRemoveChat={handleRemoveChat}/>
             </Grid>
             { !!chatId && 
             <Grid
@@ -52,7 +57,6 @@ function Home() {
                 style={{ minHeight: '100vh', paddingBottom: '30px' }}>
                     <Grid item>
                         <MessageList messages={chats[chatId].messages}/>
-                        {/* { chats[chatId].messages ? <MessageList messages={chats[chatId].messages}/> : <Redirect to="/nochat" /> } */}
                     </Grid>
                     <Grid item><MessageForm onSendMessage={handleSendMessage}/></Grid>
             </Grid>
