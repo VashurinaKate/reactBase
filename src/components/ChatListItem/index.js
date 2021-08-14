@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
@@ -7,11 +7,15 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { useDispatch } from 'react-redux';
+import { removeChat } from '../../store/chats/actions';
 
-export const ChatListItem = ({ name, id, onRemove }) => {
-    const handleRemove = () => {
-        onRemove(id)
-    }
+export const ChatListItem = ({ name, id }) => {
+    const dispatch = useDispatch();
+
+    const handleRemoveChat = useCallback(() => {
+        dispatch(removeChat(id))
+    }, [])
 
     return (
         <Link to={`/home/${id}`} >
@@ -36,8 +40,7 @@ export const ChatListItem = ({ name, id, onRemove }) => {
                     }
                 />
                 <HighlightOffIcon
-                    onClick={handleRemove}
-                    />
+                    onClick={handleRemoveChat}/>
             </ListItem>
             <Divider variant="inset" component="li" />
         </Link>

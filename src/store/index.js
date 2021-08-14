@@ -1,15 +1,27 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from 'redux-thunk'
+import { persistStore, persistReducer } from "redux-persist";
 import { profileReducer } from './profile/reducer';
 import { chatsReducer } from "./chats/reducer";
-import { middleware } from "./profile/middlewares";
+import storage from "redux-persist/lib/storage";
 
-// const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
+const persistConfig = {
+    key: 'KATE-messager',
+    storage
+}
+
+const rootReducer = combineReducers({
+    profile: profileReducer,
+    chats: chatsReducer
+})
+
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const composeEnchancers = window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
 
 export const store = createStore(
-    combineReducers({
-        profile: profileReducer,
-        chats: chatsReducer
-    }),
-    // composeEnchancers(applyMiddleware(middleware)),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    persistedReducer,
+    composeEnchancers(applyMiddleware(thunk)),
 )
+
+export const persistor = persistStore(store)
