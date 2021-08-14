@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export const Message = ({ text, author }) => {
+export const Message = ({ text, author, abbreviatedName }) => {
     const isRobot = author;
     const classes = useStyles();
 
@@ -45,7 +45,7 @@ export const Message = ({ text, author }) => {
         <Paper className={classes.paper}>
             <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
-                    <Avatar>{author}</Avatar>
+                    <Avatar>{author === AUTHORS.human ? abbreviatedName : author }</Avatar>
                 </Grid>
                 <Grid item xs>
                     <Typography style={{textAlign: 'right'}}>{text}</Typography>

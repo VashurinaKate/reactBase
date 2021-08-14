@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { setName } from "../../store/profile/actions";
-import { selectLastName, selectName } from '../../store/profile/selectors';
+import { selectBio, selectLastName, selectName } from '../../store/profile/selectors';
 // import { ChatList } from '../ChatList';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,16 +31,20 @@ export const Profile = () => {
     const classes = useStyles();
     const [nameValue, setNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
+    const [bioValue, setBioValue] = useState("");
 
     const name = useSelector(selectName);
     const lastName = useSelector(selectLastName);
+    const bio = useSelector(selectBio);
+
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(setName(nameValue, lastNameValue));
+        dispatch(setName(nameValue, lastNameValue, bioValue));
         setNameValue("")
         setLastNameValue("")
+        setBioValue("")
     }
 
     const handleChange = (e) => {
@@ -49,7 +53,9 @@ export const Profile = () => {
     const handleLastNameChange = (e) => {
         setLastNameValue(e.target.value)
     }
-
+    const handleBioChange = (e) => {
+        setBioValue(e.target.value)
+    }
     return (
         <Grid container spacing={4}>
             <Grid item xs={3}>
@@ -67,7 +73,7 @@ export const Profile = () => {
                             <Grid item>
                                 <Avatar alt="Cindy Baker" src="/static/images/avatar/1.jpg" className={classes.large} />
                             </Grid>
-                            {name} / {lastName}
+                            {name} / {lastName}, {bio}
                         </Grid>
                     </Paper>
                 </Grid>
@@ -102,6 +108,8 @@ export const Profile = () => {
                                     <TextField
                                         id="outlined-full-width"
                                         label="BIO"
+                                        onChange={handleBioChange}
+                                        value={bioValue}
                                         style={{ margin: 4 }}
                                         placeholder="A few words about you"
                                         helperText="Any details such as age, occupation or city"

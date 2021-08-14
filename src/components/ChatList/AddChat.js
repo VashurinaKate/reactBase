@@ -4,14 +4,11 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import { addChat } from '../../store/chats/actions'
+import { useInput } from '../../utils/useInput';
 
 export const AddChat = () => {
-    const [value, setValue] = useState('')
     const dispatch = useDispatch();
-
-    const handleChange = (e) => {
-        setValue(e.target.value)
-    }
+    const { value, handleChange, reset } = useInput('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,9 +16,8 @@ export const AddChat = () => {
             return
         }
         const newId = `chat-${Date.now()}`
-
         dispatch(addChat(newId, value))
-        setValue('')
+        reset()
     }
 
     return(

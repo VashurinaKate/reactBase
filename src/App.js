@@ -1,11 +1,13 @@
 import { Router } from './components/Router';
 import Container from '@material-ui/core/Container';
 import { Provider } from "react-redux";
-import { store } from './store';
+import { store, persistor } from './store';
+import { PersistGate } from 'redux-persist/integration/react'
 
 function App() {
     return (
         <Provider store={store}>
+            <PersistGate persistor={persistor}/>
             <div className="App">
                 <header className="App-header">
                     My Chat
