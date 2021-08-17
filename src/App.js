@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import { Provider } from "react-redux";
 import { store, persistor } from './store';
 import { PersistGate } from 'redux-persist/integration/react'
+import { Login } from './components/Login';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 </header>
                 <Container maxWidth="md" style={{ minHeight: '100vh', backgroundColor: '#cfe8fc' }}>
                     <Router/>
+                    {/* <Login/> */}
                 </Container>
             </div>
         </Provider>

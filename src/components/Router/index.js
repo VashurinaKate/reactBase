@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import { Profile } from '../Profile';
 import { NoChat } from '../NoChat'
+import { News } from '../News'
 import Home from '../Home'
 
 export const Router = () => {
@@ -10,6 +11,7 @@ export const Router = () => {
             <div style={{padding: '10px'}}>
                 <p><Link to="/home">Home</Link></p>
                 <p><Link to="/profile">Profile</Link></p>
+                <p><Link to="/news">News</Link></p>
             </div>
 
             <Switch>
@@ -21,7 +23,9 @@ export const Router = () => {
                 </Route>
                 <Route path="/home/:chatId?">
                     <Home/>
-
+                </Route>
+                <Route path="/news">
+                    <News/>
                 </Route>
                 <Route path="/nochat">
                     <NoChat />
