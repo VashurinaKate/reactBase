@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import { useState } from "react";
 import { useInput } from "../../utils/useInput";
+import { Link } from "react-router-dom";
 
 export const Login = ({ isSignUp }) => {
     const [error, setError] = useState('')
@@ -39,11 +40,17 @@ export const Login = ({ isSignUp }) => {
         }
     }
     return (
+        <>
+        <h2>{isSignUp ? "SIGN UP" : "LOGIN"}</h2>
         <form onSubmit={handleSubmit}>
             <input type="text" value={email} onChange={handleChangeEmail}/>
             <input type="password" value={password} onChange={handleChangePassword}/>
             <input type="submit"/>
-            {<span>{error}</span>}
+            {error && <span>{error}</span>}
         </form>
+        <Link to={`${isSignUp ? "/login" : "/signup"}`}>
+            {!isSignUp ? "SIGN UP" : "LOGIN"}
+        </Link>
+        </>
     )
 }

@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import { AddChat } from './AddChat'
 
-export const ChatList = ({ chatList }) => {
+export const ChatList = ({ chatList, onAddChat }) => {
     return(
         <>
         <Paper>
@@ -17,7 +17,7 @@ export const ChatList = ({ chatList }) => {
                 ))}
             </List>
         </Paper>
-        <AddChat />
+        <AddChat onAddChat={onAddChat} />
         </>
     )
 }
