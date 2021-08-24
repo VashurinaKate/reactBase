@@ -2,9 +2,15 @@ import firebase from "firebase";
 import { useState } from "react";
 import { useInput } from "../../utils/useInput";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectProfileError } from "../../store/profile/selectors";
+import { signUpWithFB, loginWithFB } from "../../store/profile/actions";
 
 export const Login = ({ isSignUp }) => {
-    const [error, setError] = useState('')
+    // const [error, setError] = useState('')
+
+    const dispatch = useDispatch();
+    const error = useSelector(selectProfileError);
 
     const {
         value: email,
@@ -25,19 +31,21 @@ export const Login = ({ isSignUp }) => {
             return
         }
 
-        try {
+        // try {
             if (isSignUp) {
-                await firebase.auth().createUserWithEmailAndPassword(email, password)
+                // await firebase.auth().createUserWithEmailAndPassword(email, password)
+                dispatch(signUpWithFB(email, password))
             } else {
-                await firebase.auth().signInWithEmailAndPassword(email, password)
+                // await firebase.auth().signInWithEmailAndPassword(email, password)
+                dispatch(loginWithFB(email, password))
             }
 
             resetEmail()
-            resetPassword()
-        } catch (error) {
-            console.log(error)
-            setError(error.message)
-        }
+            resetPassword() 
+        // catch (error) {
+            // console.log(error)
+            // setError(error.message)
+        // }
     }
     return (
         <>

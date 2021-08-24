@@ -42,7 +42,7 @@ function Home() {
             <Grid item xs={3}>
                 <ChatList
                     chatList={chats}
-                    // onAddChat={addChat}
+                    // onAddChat={addChat} 
                     // onDeleteChat={removeChat}
                     />
             </Grid>

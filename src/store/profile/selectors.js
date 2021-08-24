@@ -4,3 +4,6 @@ export const selectName = (state) => state.profile.name || AUTHORS.human
 export const selectLastName = (state) => state.profile.lastName
 export const selectAbbreviatedName = (state) => (state.profile.name.charAt(0) + state.profile.lastName.charAt(0)).toUpperCase()
 export const selectBio = (state) => state.profile.bio
+
+export const selectProfileError = (state) => state.profile.error;
+export const selectAuth = (state) => state.profile.authorized;

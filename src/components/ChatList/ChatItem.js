@@ -8,13 +8,14 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { useDispatch } from 'react-redux';
-import { removeChat } from '../../store/chats/actions';
+import { deleteChatWithFB } from '../../store/chats/actions';
 
-export const ChatListItem = ({ name, id }) => {
+export const ChatItem = ({ name, id, onDelete }) => {
     const dispatch = useDispatch();
 
     const handleRemoveChat = useCallback(() => {
-        dispatch(removeChat(id))
+        // dispatch(removeChat(id))
+        dispatch(deleteChatWithFB(id))
     }, [])
 
     return (
