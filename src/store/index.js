@@ -5,6 +5,7 @@ import { profileReducer } from './profile/reducer';
 import { chatsReducer } from "./chats/reducer";
 import storage from "redux-persist/lib/storage";
 import { articlesReducer } from "./articles/reducer";
+import { messagesReducer } from './messages/reducer'
 
 const persistConfig = {
     key: 'KATE-messager',
@@ -14,7 +15,8 @@ const persistConfig = {
 const rootReducer = combineReducers({
     profile: profileReducer,
     chats: chatsReducer,
-    articles: articlesReducer
+    articles: articlesReducer,
+    messages: messagesReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

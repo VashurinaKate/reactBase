@@ -1,14 +1,16 @@
 import firebase from "firebase";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDTBA7hv9c064cc7JIKJWJxnaJoO-EdaKo",
-  authDomain: "iron-burner-265712.firebaseapp.com",
-  databaseURL: "https://iron-burner-265712-default-rtdb.firebaseio.com",
-  projectId: "iron-burner-265712",
-  storageBucket: "iron-burner-265712.appspot.com",
-  messagingSenderId: "481179213014",
-  appId: "1:481179213014:web:7ed45c7601e26c37c9fd77",
+    apiKey: "AIzaSyDQzrEWaA6fDhXdBvme5lzPHuGLlOHdQuo",
+    authDomain: "gbmessanger.firebaseapp.com",
+    projectId: "gbmessanger",
+    storageBucket: "gbmessanger.appspot.com",
+    messagingSenderId: "76452901787",
+    appId: "1:76452901787:web:f4eebd4f214209959a673e",
+    measurementId: "G-GMWC90GC7P"
 };
 
 firebase.initializeApp(firebaseConfig);
 
+export const db = firebase.database();
+export const auth = firebase.auth();

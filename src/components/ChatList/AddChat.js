@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { addChat } from '../../store/chats/actions'
 import { useInput } from '../../utils/useInput';
 
-export const AddChat = () => {
+export const AddChat = ({ onAddChat }) => {
     const dispatch = useDispatch();
     const { value, handleChange, reset } = useInput('')
 
@@ -16,7 +16,8 @@ export const AddChat = () => {
             return
         }
         const newId = `chat-${Date.now()}`
-        dispatch(addChat(newId, value))
+        // dispatch(onAddChat(newId, value))
+        onAddChat(newId, value)
         reset()
     }
 
